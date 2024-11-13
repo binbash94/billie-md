@@ -1,20 +1,21 @@
 package services
 
+import "database/sql"
+
 // holds all services related to retriving a billing code
-type DataService struct{
-	// holds a pointer to db
-	// db *Database
+type DataService struct {
+	db *sql.DB
 }
 
 // placeholder constructor that initializes the billing code services with any dependencies it requires
-func NewDataService(database *Database) *DataService {
+func NewDataService(database *sql.DB) *DataService {
 	return &DataService{
-		db: database
+		db: database,
 	}
 }
 
-func (s *DataService) GetBillingCode() (string, error) {
-	code := "placeholder for billing code retrieved from DB"
+func (s *DataService) GetBillingCode() string {
+	billingCode := "placeholder for billing code retrieved from DB"
 
-	return code
+	return billingCode
 }
