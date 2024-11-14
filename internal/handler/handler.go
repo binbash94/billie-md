@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"net/http"
 
+	"billi-md/internal/models"
 	"billi-md/internal/services"
 
 	"github.com/gin-gonic/gin"
@@ -30,8 +31,12 @@ func NewHandler(config *Config) {
 
 // Placeholder implementing the Handler type to get the require billing code.
 func (handler *Handler) generateBillingCode(ctx *gin.Context) {
+
+	// define the qualifier model that we will bind our user POST data to
+	var Qualifiers models.Qualifiers
+
 	// call the service layer method
-	responseCode := handler.service.GetBillingCode()
+	responseCode := handler.service.GetBillingCode(&Qualifiers)
 
 	ctx.JSON(http.StatusOK, gin.H{
 		"responseCode": responseCode,
