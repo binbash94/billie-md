@@ -26,7 +26,7 @@ func NewHandler(config *Config) {
 	// configure the handler with the dependencies required to call the service layer
 	handler := &Handler{service: services.NewDataService(config.db)}
 
-	config.R.GET("/api/", handler.generateBillingCode)
+	config.R.POST("/api/", handler.generateBillingCode)
 }
 
 // Placeholder implementing the Handler type to get the require billing code.
